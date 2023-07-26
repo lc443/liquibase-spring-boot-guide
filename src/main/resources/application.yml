@@ -1,0 +1,25 @@
+#In case you have flyway you need to add
+spring:
+  application:
+    name: liquibase demo
+  liquibase:
+    enabled: true
+    changeLog: classpath:db/changelog/changelog-master.xml
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/Java
+    username: postgres
+    password: password
+  jpa:
+    rest:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: liquibase_demo
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+
+
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+
+<!--    If we want to add new column to database use this below -->
+<!--    <changeSet id="1" author="leron">-->
+<!--        <addColumn schemaName="liquibase_demo" tableName="person">-->
+<!--            <column name="address" type="varchar(255)"></column>-->
+<!--        </addColumn>-->
+<!--        <addColumn schemaName="liquibase-demo" tableName="person">-->
+<!--            <column name="phone_number" type="varchar(255)"></column>-->
+<!--        </addColumn>-->
+<!--    </changeSet>-->
+
+<!--    Creating the table with liquibase instead of hibernate-->
+    <changeSet id="20230726_person_table" author="leron">
+        <sql>
+            create sequence if not exists liquibase_demo.person_sequence_generator start 1 increment 1;
+
+            create table if not exists liquibase_demo.person (
+                id bigint not null,
+                name varchar(255),
+                address varchar(255),
+                phone_number varchar(255),
+                primary key (id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="renamecolumn-name" author="leron">
+        <renameColumn schemaName="liquibase_demo"
+                      tableName="person"
+                      newColumnName="first_name"
+                      oldColumnName="name"
+                      columnDataType="varchar(255)"
+                      remarks="A change in names"/>
+    </changeSet>
+    <changeSet id="dropcolumn-name" author="leron">
+        <dropColumn schemaName="liquibase_demo"
+                      tableName="person"
+                      columnName="name"/>
+    </changeSet>
+</databaseChangeLog>
