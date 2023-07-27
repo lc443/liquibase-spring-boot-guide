@@ -119,8 +119,6 @@ This is where you will define your create your schema for your database:
 ```java
 Keep in mind that your changelog-v1.0.xml should match your entity definition in your models.It should be the same as this:
 
-        package com.leron.liquibase.models;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
